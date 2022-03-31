@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 class LoginForm(forms.Form):
@@ -123,6 +124,54 @@ class RegisterLogin(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'password']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password','password_confirmation']
+
+    def clean_username(self):
+        username_data = self.cleaned_data.get('username')
+        exist = User.objects.get(
+            username = username_data
+        ).exists()
+
+        if not exist:
+            raise ValidationError(
+                "Nome de usuário já cadastrado, insira um novo!",
+                code="invalid",
+            )
+       
+        return username_data
+
+    def clean_email(self):
+        email_data = self.cleaned_data.get("email")
+        exist = User.objects.get(
+            email = email_data
+        ).exists()
+
+        if not exist:
+            raise ValidationError(
+                "Endereço de e-mail já cadastrado, insira um novo!",
+                code = "invalid"
+            )
+
+        return email_data
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password_data = cleaned_data.get("password")
+        password_confirmation_data = cleaned_data.get("password_confirmation")
+
+        if password_data != password_confirmation_data:
+            raise ValidationError({
+                "password": ValidationError(
+                    "Ambas as senhas devem ser iguais!",
+                    code = "invalid"
+                ),
+                "password": ValidationError(
+                    "Ambas as senhas devem ser iguais!",
+                    code = "invalid"
+                ),
+            })
+        
+
+
 
     
