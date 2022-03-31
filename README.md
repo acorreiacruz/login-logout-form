@@ -1,0 +1,1 @@
+Formulários de login e logout, bem como sistema de autenticação de usuário, por meio do framework Django utilizando function based views.
