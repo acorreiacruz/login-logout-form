@@ -13,11 +13,25 @@
     <div class="title-container">
         <h1 class="title">Login</h1>
     </div>
-    <div class="grid-container">
-        {% csrf_token %}
-        <form action="#" method="POST">
-            
-        </form>
+    <div class="form-container">
+        
+        <div class="grid-container">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.help_messages %}
+                        <div class="help-messages">
+                            {{ field.help_messages }}
+                        </div>
+                    {% endif %}
+                    <div class="form-field">
+                        <label for="{{ field.id_for_label }}"> {{ field.label }} </label>
+                        <p> {{ field }} </p>
+                    </div>
+                {% endfor %}
+                <button type="submit">Login</button>
+            </form>
+        </div>
     </div>
 </body>
 
