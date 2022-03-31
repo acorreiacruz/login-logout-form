@@ -34,7 +34,7 @@ class LoginForm(forms.Form):
     )
 
 
-class RegisterLogin(forms.ModelForm):
+class RegisterForm(forms.ModelForm):
 
     first_name = forms.CharField(
         required = True,
