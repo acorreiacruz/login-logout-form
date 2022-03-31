@@ -38,7 +38,7 @@ class RegisterForm(forms.ModelForm):
 
     first_name = forms.CharField(
         required = True,
-        label = "Nome de usuário",
+        label = "Primeiro Nome",
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.TextInput(attrs = {
@@ -52,7 +52,7 @@ class RegisterForm(forms.ModelForm):
 
     last_name = forms.CharField(
         required = True,
-        label = "Nome de usuário",
+        label = "Último Nome",
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.TextInput(attrs = {
@@ -80,7 +80,7 @@ class RegisterForm(forms.ModelForm):
 
     email = forms.CharField(
         required = True,
-        label = "Nome de usuário",
+        label = "E-mail",
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.TextInput(attrs = {
@@ -94,7 +94,7 @@ class RegisterForm(forms.ModelForm):
 
     password = forms.CharField(
         required = True,
-        label = "Nome de usuário",
+        label = "Senha",
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.PasswordInput(attrs = {
@@ -109,7 +109,7 @@ class RegisterForm(forms.ModelForm):
 
     password_confirmation = forms.CharField(
         required = True,
-        label = "Nome de usuário",
+        label = "Confirmação da Senha",
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.PasswordInput(attrs = {
