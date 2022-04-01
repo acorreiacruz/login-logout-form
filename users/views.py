@@ -25,16 +25,25 @@ def register_validate(request):
     form = RegisterForm(register_form_data)
 
     if form.is_valid():
-        form.save()
+        user = form.save(commit=False)
+        user.set_password(user.password)
+        user.save()
         del(request.session['form_data'])
 
     return redirect('users:register')
 
 def login_view(request):
-    ...
+
+    form = LoginForm()
+    
+    return render(request,'users/pages/login.html',context={
+        'form': form,
+        'form_action': reverse("users:login_validate")
+    })
 
 def login_view_validate(request):
-    if request.GET:
+    if not request.POST:
         raise Http404()
+    
 
 

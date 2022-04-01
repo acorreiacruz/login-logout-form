@@ -29,7 +29,7 @@ class LoginForm(forms.Form):
         }),
         error_messages= {
             'required': 'O campo de senha não pode ficar vazio, insira a sua senha!',
-            'invalid':'Senha inserida inválida, repita o processor e insira uma válida!',
+            'invalid':'Senha inserida inválida, repita o processo e insira uma válida!',
         }
     )
 
@@ -128,7 +128,7 @@ class RegisterForm(forms.ModelForm):
 
     def clean_username(self):
         username_data = self.cleaned_data.get('username')
-        exist = User.objects.get(
+        exist = User.objects.filter(
             username = username_data
         ).exists()
 
@@ -142,7 +142,7 @@ class RegisterForm(forms.ModelForm):
 
     def clean_email(self):
         email_data = self.cleaned_data.get("email")
-        exist = User.objects.get(
+        exist = User.objects.filter(
             email = email_data
         ).exists()
 
@@ -163,11 +163,11 @@ class RegisterForm(forms.ModelForm):
             raise ValidationError({
                 "password": ValidationError(
                     "Ambas as senhas devem ser iguais!",
-                    code = "invalid"
+                    code = "invalid",
                 ),
-                "password": ValidationError(
+                "password_confirmation": ValidationError(
                     "Ambas as senhas devem ser iguais!",
-                    code = "invalid"
+                    code = "invalid",
                 ),
             })
         
