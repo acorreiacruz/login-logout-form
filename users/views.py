@@ -3,7 +3,8 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from .forms import LoginForm, RegisterForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login , logout
+from django.contrib.auth.decorators import login_required
 
 def register(request):
 
@@ -65,6 +66,10 @@ def login_view_validate(request):
         messages.error("Nome de usuário e senha inválidos!")
     
     return redirect("users:login")
-    
+
+@login_required(login_url="users:login",redirect_field_name="next")
+def logout_view(request):
+    logout(request)
+    return redirect("users:login")
 
 

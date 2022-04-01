@@ -3,10 +3,13 @@
 {% block content %}
     <div class="title-container center">
         <h1 class="title">Login</h1>
+        {% if request.user.is_authenticated %}
+            <p>Você está logado como {{ request.user.username }}</p>
+        {% endif %}
     </div>
-    {% if messages %}
-        <div class="messages">
-            {{ messages }}
+    {% if message %}
+        <div class="message {{ message.tags }}">
+            {{ message }}
         </div>
     {% endif %}
     {% include 'global/form.html' %}
