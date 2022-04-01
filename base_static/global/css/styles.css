@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(240, 240, 240);
+}
+
+.title-container{
+    text-align: center;
+}
+
+.title-container h1{
+    margin: auto;
+    color: black;
+}
+
+.title-container .login-message{
+    font-size: 18px;
+}
+
+.title-container .login-message a{
+    width: fit-content;
+    text-decoration: none;
+    font-weight: bold;
+    color: blue;
+}
+
+.form-container{
+    margin: 15px auto;
+    width: 60%;
+}
+
+.form-container label{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+.form-container input{
+    font-size: 22px;
+}
+
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 8px 15px;
+    background-color: rgb(190, 190, 190);
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px 10px;
+    width: 100%;
+}
+
+.field-errors{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.field-errors ul{
+    list-style: none;
+    padding: 2px 0px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-container button{
+    font-size: 18px;
+    padding: 5px 5px;
+    margin: 10px auto;
+    outline: none;
+    border-width: 2px;
+    border-radius: 3px;
+}
+
+.input-container{
+    text-align: center;
+}
+
+.message{
+    width: 60%;
+    font-size: 18px;
+    padding: 5px 5px;
+    margin: 10px auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+.message-error{
+    color: red;
+    background-color: rgb(255, 166, 166);
+    border: 2px solid red;
+}
+
+.message-success{
+    color: rgb(0, 0, 255);
+    background-color: rgb(166, 166, 255);
+    border: 2px solid blue;
+}
+
+
