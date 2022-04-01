@@ -83,6 +83,20 @@ body{
     text-align: center;
 }
 
+.inline-form{
+    display: inline;
+}
+
+.inline-form button {
+    font-size: 18px;
+    font-weight: bold;
+    color: blue;
+    background-color: none;
+    outline: none;
+    border: 0px;
+    cursor: pointer;
+}
+
 .message{
     width: 60%;
     font-size: 18px;

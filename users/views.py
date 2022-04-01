@@ -68,8 +68,14 @@ def login_view_validate(request):
     
     return redirect("users:login")
 
-@login_required(login_url="users:login",redirect_field_name="next")
+@login_required(login_url="users:login", redirect_field_name="next")
 def logout_view(request):
+    if not request.POST:
+        return redirect("users:login")
+    
+    if request.POST.get("username") != request.user.username:
+        return redirect("users:login")
+
     logout(request)
     return redirect("users:login")
 
