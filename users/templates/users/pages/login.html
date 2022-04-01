@@ -4,13 +4,15 @@
     <div class="title-container center">
         <h1 class="title">Login</h1>
         {% if request.user.is_authenticated %}
-            <p>Você está logado como {{ request.user.username }}</p>
+            <div>Você está logado como {{ request.user.username }}. Para sair <a href="{% url 'users:logout' %}">clique aqui</a></div>
         {% endif %}
     </div>
-    {% if message %}
-        <div class="message {{ message.tags }}">
-            {{ message }}
-        </div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message {{ messages.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
     {% endif %}
     {% include 'global/form.html' %}
 {% endblock content %}

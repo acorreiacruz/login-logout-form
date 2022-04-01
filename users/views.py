@@ -31,6 +31,7 @@ def register_validate(request):
         user.set_password(user.password)
         form.save()
         del(request.session['register_form_data'])
+        messages.success(request, "Usuário registrado com sucesso!")
         return redirect("users:login")
 
     return redirect('users:register')
@@ -57,13 +58,13 @@ def login_view_validate(request):
         )
 
         if authenticated_user is not None:
-            messages.success("Usuário logado com sucesso!")
+            messages.success(request, "Usuário logado com sucesso!")
             login(request,authenticated_user)
         else:
-            messages.error("Credenciais do usuário inválidas!")
+            messages.error(request, "Credenciais do usuário inválidas!")
             
     else:
-        messages.error("Nome de usuário e senha inválidos!")
+        messages.error(request, "Nome de usuário e senha inválidos!")
     
     return redirect("users:login")
 
