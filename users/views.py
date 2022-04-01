@@ -27,8 +27,8 @@ def register_validate(request):
     if form.is_valid():
         user = form.save(commit=False)
         user.set_password(user.password)
-        user.save()
-        del(request.session['form_data'])
+        form.save()
+        del(request.session['register_form_data'])
 
     return redirect('users:register')
 
@@ -44,6 +44,11 @@ def login_view(request):
 def login_view_validate(request):
     if not request.POST:
         raise Http404()
+    
+    form = LoginForm(request.POST)
+
+    if form.is_valid():
+        ...
     
 
 

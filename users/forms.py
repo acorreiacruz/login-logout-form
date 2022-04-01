@@ -42,7 +42,7 @@ class RegisterForm(forms.ModelForm):
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.TextInput(attrs = {
-                'placeholder':'',       
+                'placeholder':'Ex.: antonio',       
         }),
         error_messages = {
             'required':'O campo de primeiro nome não pode ficar vazio, insira um valor!',
@@ -56,7 +56,7 @@ class RegisterForm(forms.ModelForm):
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.TextInput(attrs = {
-                'placeholder':'',    
+                'placeholder':'Ex.: correia',    
         }),
         error_messages = {
             'required':'O campo de primeiro nome não pode ficar vazio, insira um valor!',
@@ -70,11 +70,11 @@ class RegisterForm(forms.ModelForm):
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.TextInput(attrs = {
-                'placeholder':'',   
+                'placeholder':'Ex.: antoniocorreia',   
         }),
         error_messages = {
-            'required':'',
-            'invalid':'',
+            'required':'O campo de nome de usuário não pode ficar vazio, insira um valor!',
+            'invalid':'Nome de usuário inválido, insira um válido!',
         }
     )
 
@@ -84,11 +84,11 @@ class RegisterForm(forms.ModelForm):
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.TextInput(attrs = {
-                'placeholder':'', 
+                'placeholder':'Ex.: email@email.com', 
         }),
         error_messages = {
-            'required':'',
-            'invalid':'',
+            'required':'O campo de e-mail não pode ficar vazio, insira um valor!',
+            'invalid':'Endereço de e-mail inválido, insira um válido!',
         }
     )
 
@@ -98,12 +98,12 @@ class RegisterForm(forms.ModelForm):
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.PasswordInput(attrs = {
-                'placeholder':'',
+                'placeholder':'Senha',
             
         }),
         error_messages = {
-            'required':'',
-            'invalid':'',
+            'required':'O campo de senha não pode ficar vazio, insira um valor!',
+            'invalid':'Senha inválida, insira uma válida!',
         }
     )
 
@@ -113,12 +113,12 @@ class RegisterForm(forms.ModelForm):
         label_suffix = ":",
         help_text = "Digite o seu nome de usuário",
         widget = forms.PasswordInput(attrs = {
-                'placeholder':'',
+                'placeholder':'Confirmação da senha',
             
         }),
         error_messages = {
-            'required':'',
-            'invalid':'',
+            'required':'O campo de confirmação de senha não pode ficar vazio, insira um valor!',
+            'invalid':'Confirmação de senha inválida, insira uma válida',
         }
     )
     
@@ -127,12 +127,12 @@ class RegisterForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'username', 'email', 'password','password_confirmation']
 
     def clean_username(self):
-        username_data = self.cleaned_data.get('username')
+        username_data = self.cleaned_data.get('username','')
         exist = User.objects.filter(
-            username = username_data
+            username = username_data,
         ).exists()
 
-        if not exist:
+        if exist:
             raise ValidationError(
                 "Nome de usuário já cadastrado, insira um novo!",
                 code="invalid",
@@ -146,10 +146,10 @@ class RegisterForm(forms.ModelForm):
             email = email_data
         ).exists()
 
-        if not exist:
+        if exist:
             raise ValidationError(
                 "Endereço de e-mail já cadastrado, insira um novo!",
-                code = "invalid"
+                code = "invalid",
             )
 
         return email_data

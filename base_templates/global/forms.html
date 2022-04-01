@@ -12,13 +12,13 @@
                     <label for="{{ field.id_for_label }}"> {{ field.label }} </label>
                     <p> {{ field }} </p>
                 </div>
-                {% if field.error %}
+                {% if field.errors %}
                     <div class="field-errors">
-                        {{ field.error }}
+                        {{ field.errors }}
                     </div>
                 {% endif %}
             {% endfor %}
-            <button type="submit">Login</button>
+            <button type="submit">Enviar</button>
         </div>
     </form>   
 </div>
