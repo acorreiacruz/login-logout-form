@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from .forms import LoginForm, RegisterForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 def register(request):
 
@@ -29,6 +30,7 @@ def register_validate(request):
         user.set_password(user.password)
         form.save()
         del(request.session['register_form_data'])
+        return redirect("users:login")
 
     return redirect('users:register')
 
@@ -48,7 +50,21 @@ def login_view_validate(request):
     form = LoginForm(request.POST)
 
     if form.is_valid():
-        ...
+        authenticated_user = authenticate(
+            username = form.cleaned_data['username'],
+            password = form.cleaned_data['password']
+        )
+
+        if authenticated_user is not None:
+            messages.success("Usuário logado com sucesso!")
+            login(request,authenticated_user)
+        else:
+            messages.error("Credenciais do usuário inválidas!")
+            
+    else:
+        messages.error("Nome de usuário e senha inválidos!")
+    
+    return redirect("users:login")
     
 
 

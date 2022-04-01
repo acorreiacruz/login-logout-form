@@ -4,7 +4,12 @@
     <div class="title-container center">
         <h1 class="title">Login</h1>
     </div>
-    {% include 'global/forms.html' %}
+    {% if messages %}
+        <div class="messages">
+            {{ messages }}
+        </div>
+    {% endif %}
+    {% include 'global/form.html' %}
 {% endblock content %}
 
 
