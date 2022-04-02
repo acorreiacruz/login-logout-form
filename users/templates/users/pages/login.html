@@ -4,7 +4,8 @@
     <div class="title-container">
         <h1>Login</h1>
         {% if request.user.is_authenticated %}
-            <div class="login-message">Você está logado como {{ request.user.username }}. Para sair 
+            <div class="login-message">
+                Você está logado como {{ request.user.username }}. Para sair 
                 <form action="{% url 'users:logout' %}" method="POST" class="inline-form">
                     {% csrf_token %}
                     <input type="hidden" name="username" value="{{ request.user.username }}">

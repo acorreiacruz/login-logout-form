@@ -46,11 +46,11 @@ class RegisterForm(forms.ModelForm):
         }),
         error_messages = {
             'required':'O campo de primeiro nome não pode ficar vazio, insira um valor!',
-            'max-length':"O primeiro nome deve ter no máximo 20 caracteres",
-            'min-length':'O primeiro nome deve ter no mínimo 5 caracteres',
+            'min_length':'O primeiro nome deve ter no mínimo 3 caracteres',
+            'max_length':"O primeiro nome deve ter no máximo 20 caracteres",
         },
-        max_length = 20,
         min_length= 3,
+        max_length = 20,  
     )
 
     last_name = forms.CharField(
@@ -63,11 +63,11 @@ class RegisterForm(forms.ModelForm):
         }),
         error_messages = {
             'required':'O campo de último nome não pode ficar vazio, insira um valor!',
-            'max-length':"O último nome deve ter no máximo 20 caracteres",
-            'min-length':'O último nome deve ter no mínimo 3 caracteres',
+            'min_length':'O último nome deve ter no mínimo 3 caracteres',
+            'max_length':"O último nome deve ter no máximo 20 caracteres",
         },
-        max_length = 20,
         min_length = 3,
+        max_length = 20,
     )
 
     username = forms.CharField(
