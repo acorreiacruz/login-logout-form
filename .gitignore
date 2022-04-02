@@ -11,7 +11,7 @@ media
 
 # Pythhon tests
 /tests.py
-tests/*
+tests/
 pytest.ini
 
 # If you are using PyCharm #

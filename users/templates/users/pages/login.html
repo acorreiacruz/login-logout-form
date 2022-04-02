@@ -11,6 +11,10 @@
                     <button type="submit">clique aqui</button>
                 </form>
             </div>
+        {% else %}
+            <div class="redirect-text">
+                Caso não possua uma conta, <a href="{% url 'users:register' %}">clique aqui</a> para realizar o cadastro.
+            </div>
         {% endif %}
     </div>
     {% if messages %}

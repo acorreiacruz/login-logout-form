@@ -3,6 +3,9 @@
 {% block content %}
     <div class="title-container center">
         <h1 class="title">Register</h1>
+        <div class="redirect-text">
+            Caso já possua uma conta, <a href="{% url 'users:login' %}">clique aqui</a> para realizar o login.
+        </div>
     </div>
     {% include 'global/form.html' %}
 {% endblock content %}

@@ -3,12 +3,12 @@
         {% csrf_token %}
         <div class="grid-container">
             {% for field in form %}
-                {% if field.help_messages %}
-                    <div class="help-messages">
-                        {{ field.help_messages }}
-                    </div>
-                {% endif %}
                 <div class="form-field-input">
+                    {% if field.help_text %}
+                        <div class="help-messages">
+                            {{ field.help_text }}
+                        </div>
+                    {% endif %}
                     <label for="{{ field.id_for_label }}"> {{ field.label }} </label>
                     <p> {{ field }} </p>
                     {% if field.errors %}
@@ -20,5 +20,5 @@
             {% endfor %}
         </div>
         <div class="input-container"><button type="submit">Enviar</button></div>
-    </form> 
+    </form>
 </div>

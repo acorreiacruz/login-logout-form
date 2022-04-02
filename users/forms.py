@@ -40,28 +40,34 @@ class RegisterForm(forms.ModelForm):
         required = True,
         label = "Primeiro Nome",
         label_suffix = ":",
-        help_text = "Digite o seu nome de usuário",
+        help_text = "Digite o seu primeiro nome",
         widget = forms.TextInput(attrs = {
                 'placeholder':'Ex.: antonio',       
         }),
         error_messages = {
             'required':'O campo de primeiro nome não pode ficar vazio, insira um valor!',
-            'invalid':'O primeiro nome inserido é inválido!, insira um válido!',
-        }
+            'max-length':"O primeiro nome deve ter no máximo 20 caracteres",
+            'min-length':'O primeiro nome deve ter no mínimo 5 caracteres',
+        },
+        max_length = 20,
+        min_length= 3,
     )
 
     last_name = forms.CharField(
         required = True,
         label = "Último Nome",
         label_suffix = ":",
-        help_text = "Digite o seu nome de usuário",
+        help_text = "Digite o seu último nome",
         widget = forms.TextInput(attrs = {
                 'placeholder':'Ex.: correia',    
         }),
         error_messages = {
-            'required':'O campo de primeiro nome não pode ficar vazio, insira um valor!',
-            'invalid':'O primeiro nome inserido é inválido!, insira um válido!',
-        }
+            'required':'O campo de último nome não pode ficar vazio, insira um valor!',
+            'max-length':"O último nome deve ter no máximo 20 caracteres",
+            'min-length':'O último nome deve ter no mínimo 3 caracteres',
+        },
+        max_length = 20,
+        min_length = 3,
     )
 
     username = forms.CharField(
@@ -74,52 +80,47 @@ class RegisterForm(forms.ModelForm):
         }),
         error_messages = {
             'required':'O campo de nome de usuário não pode ficar vazio, insira um valor!',
-            'invalid':'Nome de usuário inválido, insira um válido!',
-        }
+        },
     )
 
-    email = forms.CharField(
+    email = forms.EmailField(
         required = True,
         label = "E-mail",
         label_suffix = ":",
-        help_text = "Digite o seu nome de usuário",
-        widget = forms.TextInput(attrs = {
+        help_text = "Digite o seu endereço de e-mail",
+        widget = forms.EmailInput(attrs = {
                 'placeholder':'Ex.: email@email.com', 
         }),
         error_messages = {
             'required':'O campo de e-mail não pode ficar vazio, insira um valor!',
             'invalid':'Endereço de e-mail inválido, insira um válido!',
-        }
+        },
     )
 
     password = forms.CharField(
         required = True,
         label = "Senha",
         label_suffix = ":",
-        help_text = "Digite o seu nome de usuário",
+        help_text = "Digite uma senha",
         widget = forms.PasswordInput(attrs = {
                 'placeholder':'Senha',
-            
         }),
         error_messages = {
             'required':'O campo de senha não pode ficar vazio, insira um valor!',
-            'invalid':'Senha inválida, insira uma válida!',
-        }
+        },
     )
 
     password_confirmation = forms.CharField(
         required = True,
         label = "Confirmação da Senha",
         label_suffix = ":",
-        help_text = "Digite o seu nome de usuário",
+        help_text = "Digite novamente a sua senha",
         widget = forms.PasswordInput(attrs = {
                 'placeholder':'Confirmação da senha',
-            
         }),
         error_messages = {
             'required':'O campo de confirmação de senha não pode ficar vazio, insira um valor!',
-            'invalid':'Confirmação de senha inválida, insira uma válida',
-        }
+        },
     )
     
     class Meta:
